@@ -657,6 +657,13 @@ export const makeSocket = (config: SocketConfig) => {
 				date: new Date()
 			}
 		})
+
+                const statusCode = (error as Boom)?.output?.statusCode
+if(statusCode !== DisconnectReason.loggedOut) {
+    setTimeout(() => {
+        ev.emit('connection.update', { connection: 'connecting' })
+    }, 3000)
+}
 		ev.removeAllListeners('connection.update')
 		ev.destroy()
 	}
