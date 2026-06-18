@@ -25,7 +25,13 @@ export class WebSocketClient extends AbstractSocketClient {
 
 		this.socket = new WebSocket(this.url, {
 			origin: DEFAULT_ORIGIN,
-			headers: this.config.options?.headers as {},
+headers: {
+    ...this.config.options?.headers as any,
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+    'Accept-Language': 'en-US,en;q=0.9',
+    'Cache-Control': 'no-cache',
+    'Pragma': 'no-cache'
+},
 			handshakeTimeout: this.config.connectTimeoutMs,
 			timeout: this.config.connectTimeoutMs,
 			agent: this.config.agent
