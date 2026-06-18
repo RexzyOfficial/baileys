@@ -266,6 +266,8 @@ export type AnyRegularMessageContent = (
 	  }
 	| {
 			listReply: Omit<proto.Message.IListResponseMessage, 'contextInfo'>
+} | {
+        interactive: proto.Message.IInteractiveMessage
 	  }
 	| {
 			pin: WAMessageKey

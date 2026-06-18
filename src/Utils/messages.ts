@@ -525,8 +525,10 @@ export const generateWAMessageContent = async (
 				productImage: imageMessage
 			}
 		})
-	} else if (hasNonNullishProperty(message, 'listReply')) {
-		m.listResponseMessage = { ...message.listReply }
+} else if (hasNonNullishProperty(message, 'listReply')) {
+                m.listResponseMessage = { ...message.listReply }
+        } else if (hasNonNullishProperty(message, 'interactive')) {
+                m.interactiveMessage = WAProto.Message.InteractiveMessage.create(message.interactive)
 	} else if (hasNonNullishProperty(message, 'event')) {
 		m.eventMessage = {}
 		const startTime = Math.floor(message.event.startDate.getTime() / 1000)
